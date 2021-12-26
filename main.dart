@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:number_inc_dec/number_inc_dec.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,6 +24,19 @@ class _MyHomePageState extends State<MyHomePage> {
   double _initialRating = 2.0;
 
   IconData? _selectedIcon;
+  int _counter = 0;
+
+  void _increment() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _decrement() {
+    setState(() {
+      _counter--;
+    });
+  }
 
   @override
   void initState() {
@@ -68,8 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   // Profile image
                   Positioned(
-                    top:
-                        150.0, // (background container size) - (circle height / 2)
+                    top: 150.0,
                     child: Container(
                         height: 80,
                         width: 80,
@@ -99,66 +110,58 @@ class _MyHomePageState extends State<MyHomePage> {
                         text: 'Kakashi Hatake',
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                           fontWeight: FontWeight.bold,
                         )),
                     WidgetSpan(
-                      child: Icon(Icons.military_tech_outlined, size: 20),
+                      child: Icon(Icons.military_tech_outlined, size: 15),
                     ),
                   ],
                 ),
               ),
-              Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: RichText(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
                         children: const [
                           WidgetSpan(
                             child: Icon(Icons.folder_open,
-                                color: Colors.green, size: 20),
+                                color: Colors.green, size: 15),
                           ),
                           TextSpan(
                               text: 'SAVED',
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 20.0,
+                                fontSize: 15.0,
                                 fontWeight: FontWeight.bold,
                               )),
                         ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text("|",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.bold)),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: RichText(
+                      )),
+                  Text("|",
                       textAlign: TextAlign.center,
-                      text: TextSpan(
-                        children: const [
-                          TextSpan(
-                              text: 'POINTS',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              )),
-                          WidgetSpan(
-                            child: Icon(Icons.star_outlined,
-                                color: Colors.deepOrange, size: 20),
-                          ),
-                        ],
-                      ),
+                      style: TextStyle(
+                          fontSize: 15.0, fontWeight: FontWeight.bold)),
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: const [
+                        TextSpan(
+                            text: 'POINTS',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.bold,
+                            )),
+                        WidgetSpan(
+                          child: Icon(Icons.star_outlined,
+                              color: Colors.deepOrange, size: 15),
+                        ),
+                      ],
                     ),
-                  )
+                  ),
                 ],
               ),
               Container(
@@ -175,13 +178,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: const [
                             WidgetSpan(
                               child: Icon(Icons.shopping_bag_rounded,
-                                  color: Colors.pink, size: 20),
+                                  color: Colors.pink, size: 15),
                             ),
                             TextSpan(
                                 text: 'MY CART (3)',
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 20.0,
+                                  fontSize: 15.0,
                                   fontWeight: FontWeight.bold,
                                 )),
                           ],
@@ -198,12 +201,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 text: 'Check Out-All',
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 20.0,
+                                  fontSize: 15.0,
                                   fontWeight: FontWeight.bold,
                                 )),
                             WidgetSpan(
                               child: Icon(Icons.arrow_forward,
-                                  color: Colors.black, size: 20),
+                                  color: Colors.black, size: 15),
                             ),
                           ],
                         ),
@@ -266,10 +269,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         Text("Rs. 590",
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.bold)),
+                                fontSize: 15.0, fontWeight: FontWeight.bold)),
                         Align(
                           alignment: Alignment.center,
-                          child: Example(),
+                          child: Counter(),
                         ),
                       ],
                     ),
@@ -298,7 +301,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   text: 'Jim Morrison',
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 10.0,
+                                    fontSize: 15.0,
                                     fontWeight: FontWeight.bold,
                                   )),
                             ],
@@ -330,10 +333,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         Text("Rs. 880",
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.bold)),
+                                fontSize: 15.0, fontWeight: FontWeight.bold)),
                         Align(
                           alignment: Alignment.center,
-                          child: Example(),
+                          child: Counter(),
                         ),
                       ],
                     ),
@@ -394,22 +397,25 @@ class _MyHomePageState extends State<MyHomePage> {
                         Text("Rs. 1000",
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.bold)),
+                                fontSize: 15.0, fontWeight: FontWeight.bold)),
                         Align(
                           alignment: Alignment.center,
-                          child: Example(),
+                          child: Counter(),
                         ),
                       ],
                     ),
                   )
                 ],
               )),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(20, 5, 5, 20),
+              ),
               SizedBox(
                 height: 45,
                 child: Text("Continue Shopping",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 20.0,
+                        fontSize: 15.0,
                         decoration: TextDecoration.underline,
                         fontWeight: FontWeight.bold)),
               ),
@@ -436,23 +442,31 @@ class _MyHomePageState extends State<MyHomePage> {
       updateOnDrag: true,
     );
   }
-}
 
-class Example extends StatelessWidget {
-  const Example({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return NumberInputPrefabbed.roundedButtons(
-      controller: TextEditingController(),
-      buttonArrangement: ButtonArrangement.incRightDecLeft,
-      incDecBgColor: Colors.transparent,
-      scaleHeight: 1.0,
-      scaleWidth: 1.0,
-      incIcon: Icons.add,
-      decIcon: Icons.remove,
+  // ignore: non_constant_identifier_names
+  Widget Counter() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        RaisedButton(
+          onPressed: _decrement,
+          color: Colors.transparent,
+          shape: CircleBorder(side: BorderSide.none),
+          child: const Icon(
+            Icons.remove,
+            size: 10,
+          ),
+        ),
+        Text(' $_counter'),
+        RaisedButton(
+          onPressed: _increment,
+          shape: CircleBorder(side: BorderSide.none),
+          child: const Icon(
+            Icons.add,
+            size: 10,
+          ),
+        ),
+      ],
     );
   }
 }
